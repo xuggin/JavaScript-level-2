@@ -15,3 +15,5 @@ const renderGoodsList = (list) => {
 }
 
 renderGoodsList(goods);
+
+//проверка git
