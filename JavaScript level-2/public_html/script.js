@@ -11,9 +11,10 @@ const renderGoodsItem = (title, price) => {
 
 const renderGoodsList = (list) => {
   let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-  document.querySelector('.goods-list').innerHTML = goodsList;
+  
+  document.querySelector('.goods-list').innerHTML = goodsList.join(' ');
+  //goodsList - массив, я так понимаю вставка его в чистом виде ведет к появлению "," на странице
+  //привел массив к строке
 }
 
 renderGoodsList(goods);
-
-//проверка git
