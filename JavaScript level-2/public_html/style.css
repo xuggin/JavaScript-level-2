@@ -1,0 +1,38 @@
+
+/* 
+    Created on : 16.06.2019, 19:16:17
+    Author     : Мария
+*/
+
+    header {
+      padding: 0 20px;
+      margin-bottom: 20px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .cart-button {
+      margin-left: auto;
+    }
+    .goods-list {
+      margin: 0 20px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .goods-item {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      border: 1px solid #cccccc;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+    .goods-item h3 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .add-goods-button {
+      margin-left: auto;
+    }
