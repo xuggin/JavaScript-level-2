@@ -41,7 +41,8 @@ class GoodsList {
       const goodPrice = good.price;
       if (goodPrice){
         return acc = Number(acc) + Number(goodPrice);
-      }else{return acc}
+      }
+      return acc
     }, '');
     return goodsSummPrice
   }
@@ -50,16 +51,17 @@ class GoodsList {
 //класс корзины товаров
 class CartList{
     //перейти к оформлению покупки
-    bay() {}
+    buy() {}
     //очистить корзину
     clean() {}
     //вычислить сумму товаров в корзине
-    calc() {}
+   get calc() {}
 }
 
 //класс элемента корзины
 class CartItem{
     add() {}
+    update() {}
     remove() {}
 }
 
