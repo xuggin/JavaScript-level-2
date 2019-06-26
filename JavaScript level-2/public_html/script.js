@@ -1,12 +1,38 @@
+
+function makeGETRequest(url, callback) {
+  var xhr;
+
+  if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest();
+  } else if (window.ActiveXObject) { 
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      callback(xhr.responseText);
+    }
+  }
+
+  xhr.open('GET', url, true);
+  xhr.send();
+}
+const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+function addEventHandlers(){
+    const googsSearch = document.querySelector('.goods-search');
+    
+}
+
 class GoodsItem {
   constructor(title = "none", price = 0) {
-    this.title = title;
+    this.product_name = title;
     this.price = price;
   }
   render() {
     return `
       <div class="goods-item">
-        <h3>${this.title}</h3>
+        <h3>${this.product_name}</h3>
         <p>${this.price}</p>
         <button class="add-goods-button">Купить</button>
       </div>`;
@@ -17,25 +43,34 @@ class GoodsList {
   constructor (el = ".goods-list") {
     this.el = el;
     this.goods = []
+    this.filteredGoods = [];
+
   }
-  fetchGoods() {
-    this.goods = [
-      { title: "Shirt", price: 150 },
-      { title: "Socks", price: 50 },
-      { price: 350 },
-      { title: "Jacket", price: 350 },
-      { title: "Shoes" },
-      
-      
-    ];
+ 
+ fetchGoods(cb) {
+    makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+      this.goods = JSON.parse(goods);
+      cb();
+    })
   }
-  render() {
-    const listHtml = this.goods.reduce((acc, good) => {
-      const goodItem = new GoodsItem(good.title, good.price);
-      return acc += goodItem.render();
-    }, '');
-    document.querySelector(this.el).innerHTML = listHtml;
+
+
+    filterGoods(value) {
+    const regexp = new RegExp(value, 'i');
+    this.filteredGoods = this.goods.filter(good => regexp.test(good.product_name));
+    this.render();
   }
+
+
+ render() {
+    let listHtml = '';
+    this.filteredGoods.forEach(good => {
+      const goodItem = new GoodsItem(good.product_name, good.price);
+      listHtml += goodItem.render();
+    });
+    document.querySelector('.goods-list').innerHTML = listHtml;
+  }
+
   calcSumm(){
     const goodsSummPrice = this.goods.reduce((acc, good) => {
       const goodPrice = good.price;
