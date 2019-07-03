@@ -111,6 +111,7 @@ Vue.component('goods-item', {
     <div class="goods-item">
         <h3>{{ good.product_name }}</h3>
         <p>{{ good.price}}</p>
+        <button class="add-goods-button">Купить</button>
     </div>
   `
 });
@@ -131,10 +132,19 @@ Vue.component('goods-list', {
     </div>`
 });
 
+Vue.component('cart',{
+    props:['cartGoods'],
+    template:
+     `<div class="cart" v-show="isVisibleCart">
+          <button class="close-button" @click="toggleCart">❌</button>
+        </div>  `     
+});
+
 const app = new Vue({
   el: "#app",
   data: {
     goods: [],
+    cartGoods:[],
     isLoading: true,
     searchLine: '',
     isVisibleCart: false,
@@ -183,6 +193,7 @@ const app = new Vue({
   },
   async mounted() {
     this.goods = await this.makeGETRequest(`${API_URL}/catalogData.json`);
+    this.cartGoods = await this.makeGETRequest(`${API_URL}/getBasket.json`);
     await this.$nextTick();
     setTimeout(() => {
       this.isLoading = false;

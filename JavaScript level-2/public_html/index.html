@@ -69,8 +69,11 @@
              type="text">
     </form>
     <button class="cart-button" @click="toggleCart">Корзина</button>
-    <div class="cart" v-show="isVisibleCart">
-      <button class="close-button" @click="toggleCart">❌</button>
+    <div>
+        <cart :cart="cartGoods"></cart>
+  <!--      <div class="cart" v-show="isVisibleCart">
+          <button class="close-button" @click="toggleCart">❌</button>
+        </div> -->
     </div>
   </header>
   <main>
