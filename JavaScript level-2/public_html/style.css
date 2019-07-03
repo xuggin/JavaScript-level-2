@@ -1,10 +1,5 @@
-
-/* 
-    Created on : 16.06.2019, 19:16:17
-    Author     : Мария
-*/
-
-    header {
+   header {
+      position: relative;
       padding: 0 20px;
       margin-bottom: 20px;
       min-height: 40px;
@@ -35,4 +30,64 @@
     }
     .add-goods-button {
       margin-left: auto;
+    }
+    .goods-search {
+      display: flex;
+      width: 35%;
+    }
+    .search-input {
+      width: calc(100% - 100px);
+      margin-right: 20px;
+    }
+    .search-button {
+      width: 80px;
+    }
+    .goods-not-found {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart {
+      padding: 20px;
+      position: absolute;
+      z-index: 99;
+      background-color: #fff;
+      width: 400px;
+      right: 20px;
+      top: 50px;
+      border: 1px solid #cccccc;
+      min-height: 300px;
+      box-shadow: 5px 5px 5px 0 rgba(0,0,0,.25);
+    }
+    .cart:after {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom:  10px solid #cccccc;
+    }
+    .close-button {
+      cursor: pointer;
+      -webkit-appearance: none;
+      background: transparent;
+      border: none;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+    .preloader {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      background-color: #fff;
     }
